@@ -2,8 +2,7 @@ import Qs from 'qs'
 import { listToTree } from '@/libs/util'
 import instance from '@/libs/api/index'
 
-
-import {baseList} from './base-list'
+import { baseList } from './base-list'
 
 export const baseTree = {
   mixins: [baseList],
@@ -19,6 +18,7 @@ export const baseTree = {
     }
   },
   methods: {
+    // 渲染数据
     renderContent (h, { root, node, data }) {
       return h('span', {
         style: {
@@ -75,7 +75,7 @@ export const baseTree = {
             }
           })
         ])
-      ]);
+      ])
     },
     // 查询
     query () {
@@ -85,16 +85,16 @@ export const baseTree = {
         console.log(error)
       })
     },
+    // 添加
     addRoot () {
       this.$router.push({
         name: `edit_${this.namespace}_${this.entityName}`
       })
     },
-    // 添加
     addChild (id) {
       this.$router.push({
         name: `edit_${this.namespace}_${this.entityName}`,
-        query: {parentId: id}
+        query: { parentId: id }
       })
     }
   }

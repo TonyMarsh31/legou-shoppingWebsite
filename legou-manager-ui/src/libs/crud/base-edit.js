@@ -42,7 +42,7 @@ export const baseEdit = {
         console.log(error)
       })
     },
-
+    // 路由转发到list组件来展示具体信息(在list组件中进一步修改数据,或者用于新增数据)
     go2list () {
       this.$router.push({ name: `list_${this.namespace}_${this.entityName}` })
     }

@@ -24,7 +24,7 @@ public class Category extends BaseTreeEntity {
     @TableField(exist = false)
     private Integer isRoot = 0; //值=1 ： 查询根节点条件
 
-    public String getLabel() { //treeselect需要的属性
+    public String getLabel() { //因为前端组件treeselect需要,所以修改get方法名称
         return this.getTitle();
     }
 
