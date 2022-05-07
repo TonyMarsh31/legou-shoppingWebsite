@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lxs.legou.item.dao.SpecGroupDao">
+
+    <sql id="selectSql">
+        SELECT
+            *
+        FROM
+            spec_group_
+    </sql>
+
+
+    <select id="selectList" resultMap="groupMap">
+        <include refid="selectSql"/>
+        <where>
+            <if test="cid != null">
+                cid_ = #{cid}
+            </if>
+            <if test="name !=null and name.trim() != ''">
+                and rname like '%${name}%'
+            </if>
+        </where>
+    </select>
+
+    <resultMap id="groupMap" type="specGroup">
+        <id column="id_" property="id"/>
+        <result property="cid_" column="cid"/>
+        <result property="name_" column="name"/>
+        <collection property="params" javaType="java.util.List" ofType="specParam" select="com.lxs.legou.item.dao.SpecParamDao.findByGroupId" column="id_">
+            <id column="id_" property="id"/>
+            <result column="cid_" property="cid"/>
+            <result column="group_id_" property="groupId"/>
+            <result column="name_" property="name"/>
+            <result column="numeric_" property="numeric"/>
+            <result column="unit_" property="unit"/>
+            <result column="generic_" property="generic"/>
+            <result column="searching_" property="searching"/>
+        </collection>
+    </resultMap>
+
+    <select id="selectById" resultMap="groupMap">
+        <include refid="selectSql"/>
+        where
+        id_ = #{id}
+    </select>
+
+
+</mapper>
