@@ -1,16 +1,15 @@
-import Cookies from 'js-cookie'
 // cookie保存的天数
 import config from '@/config'
 import { forEach, hasOneOf, objEqual } from '@/libs/tools'
-const { title, cookieExpires, useI18n } = config
-
-export const TOKEN_KEY = 'token'
 import instance from '@/libs/api/index'
 
+const { title, useI18n } = config
+
+export const TOKEN_KEY = 'token'
 
 export const setToken = (token) => {
   sessionStorage.setItem(TOKEN_KEY, token)
-  //Cookies.set(TOKEN_KEY, token, { expires: cookieExpires || 1 })
+  // Cookies.set(TOKEN_KEY, token, { expires: cookieExpires || 1 })
 }
 
 /*
@@ -22,54 +21,51 @@ export const getToken = () => {
 */
 
 export const getToken = () => {
-    const token = sessionStorage.getItem(TOKEN_KEY)
-    if (token) {
-        instance.defaults.headers.common['Authorization'] = 'Bearer ' + token;
-        return token
-    } else
-        return false
+  const token = sessionStorage.getItem(TOKEN_KEY)
+  if (token) {
+    instance.defaults.headers.common['Authorization'] = 'Bearer ' + token
+    return token
+  } else { return false }
 }
 
 export const listToTree = (list) => {
-    let map = {};
-    list.forEach(item => {
-        if (! map[item.id]) {
-            map[item.id] = item;
-        }
-    });
+  let map = {}
+  list.forEach(item => {
+    if (!map[item.id]) {
+      map[item.id] = item
+    }
+  })
 
-    list.forEach(item => {
-        if (item.parentId) {
-            map[item.parentId].children ? map[item.parentId].children.push(item) : map[item.parentId].children = [item];
-        }
-    });
+  list.forEach(item => {
+    if (item.parentId) {
+      map[item.parentId].children ? map[item.parentId].children.push(item) : map[item.parentId].children = [item]
+    }
+  })
 
-    return list.filter(item => {
-        if (!item.parentId) {
-            return item;
-        }
-    })
+  return list.filter(item => {
+    if (!item.parentId) {
+      return item
+    }
+  })
 }
 
-//数组笛卡尔积算法calcDescartes([[1,2,3],['a','b','c']])，用于sku计算
+// 数组笛卡尔积算法calcDescartes([[1,2,3],['a','b','c']])，用于sku计算
 export const calcDescartes = (array) => {
-    if (array.length < 2) return array[0] || [];
-    return [].reduce.call(array, function (col, set) {
-        var res = [];
-        col.forEach(function (c) {
-            set.forEach(function (s) {
-                var t = [].concat(Array.isArray(c) ? c : [c]);
-                t.push(s);
-                res.push(t);
-            })
-        });
-        return res;
-    });
+  if (array.length < 2) return array[0] || []
+  return [].reduce.call(array, function (col, set) {
+    var res = []
+    col.forEach(function (c) {
+      set.forEach(function (s) {
+        var t = [].concat(Array.isArray(c) ? c : [c])
+        t.push(s)
+        res.push(t)
+      })
+    })
+    return res
+  })
 }
-
 
 /***********************************************************************************************/
-
 
 export const hasChild = (item) => {
   return item.children && item.children.length !== 0
@@ -77,8 +73,7 @@ export const hasChild = (item) => {
 
 const showThisMenuEle = (item, access) => {
   if (item.meta && item.meta.access && item.meta.access.length) {
-    if (hasOneOf(item.meta.access, access)) return true
-    else return false
+    return !!hasOneOf(item.meta.access, access)
   } else return true
 }
 /**
@@ -120,12 +115,11 @@ export const getBreadCrumbList = (route, homeRoute) => {
       meta.__titleIsFunction__ = true
       meta.title = meta.title(route)
     }
-    let obj = {
+    return {
       icon: (item.meta && item.meta.icon) || '',
       name: item.name,
       meta: meta
     }
-    return obj
   })
   res = res.filter(item => {
     return !item.meta.hideInMenu

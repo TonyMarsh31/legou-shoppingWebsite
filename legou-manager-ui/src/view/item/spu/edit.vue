@@ -256,9 +256,18 @@ export default {
       deep: true
     },
     // 选择分类，改变规格参数
+    // getCid是cid3的计算属性,但没有对cid3做任何处理，直接return
+    // 使用计算属性是为了获取cid3来避免监听整个spu对象，从而提高性能
     getCid (newValue, oldValue) {
       this.getSpec(newValue)
     }
+    // 可以直接监听spu中的所有属性,然后只对cid3的变动做出处理，但是这样做虽提高了代码可读性，但降低了性能
+    // spu: {
+    //   handler (cid3) {
+    //     this.getSpec(cid3)
+    //   },
+    //   deep: true
+    // }
   }
 }
 </script>
