@@ -4,9 +4,8 @@ import com.lxs.legou.core.controller.BaseController;
 import com.lxs.legou.item.po.Brand;
 import com.lxs.legou.item.po.Category;
 import com.lxs.legou.item.service.IBrandService;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,5 +23,11 @@ public class BrandController extends BaseController<IBrandService, Brand> {
             ids[i] = categories.get(i).getId();
         }
         entity.setCategoryIds(ids);
+    }
+    
+    @ApiOperation(value= "根据ids查询品牌", notes = "根据ids查询")
+    @GetMapping("/list-by-ids")
+    public List<Brand> selectBrandByIds(@RequestParam("ids") List<Long> ids) {
+        return service.selectBrandByIds(ids);
     }
 }

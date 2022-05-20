@@ -7,6 +7,8 @@ import com.lxs.legou.item.service.ISpuService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/item/spu")
 @CrossOrigin
@@ -24,6 +26,12 @@ public class SpuController extends BaseController<ISpuService, Spu> {
             rm.setMsg("保存失败");
         }
         return rm;
+    }
+
+    @ApiOperation(value="查询所有", notes="查询所有spu")
+    @GetMapping("/list-all")
+    public List<Spu> selectAll() {
+        return service.list(new Spu());
     }
 
 }
