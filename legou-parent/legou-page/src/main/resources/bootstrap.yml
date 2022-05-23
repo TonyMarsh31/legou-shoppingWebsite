@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: page-service
+
+# 生成静态页的位置
+pagepath: d:\temp

@@ -18,6 +18,9 @@
         <module>legou-canal</module>
         <module>legou-search</module>
         <module>legou-search</module>
+        <module>legou-page</module>
+        <module>gateway</module>
+        <module>legou-security</module>
     </modules>
 
     <packaging>pom</packaging>

@@ -4,6 +4,7 @@ import com.alibaba.otter.canal.protocol.CanalEntry;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lxs.legou.canal.client.CategoryClient;
+import com.lxs.legou.canal.client.PageClient;
 import com.lxs.legou.item.po.Category;
 import com.xpand.starter.canal.annotation.*;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -17,22 +18,71 @@ public class MyEventListener {
 
     private final CategoryClient categoryClient;
     private final StringRedisTemplate stringRedisTemplate;
+    private final PageClient pageClient;
 
-    public MyEventListener(@Qualifier("com.lxs.legou.canal.client.CategoryClient") CategoryClient categoryClient, StringRedisTemplate stringRedisTemplate) {
+    public MyEventListener(@Qualifier("com.lxs.legou.canal.client.CategoryClient") CategoryClient categoryClient,
+                           StringRedisTemplate stringRedisTemplate,
+                           PageClient pageClient) {
         this.categoryClient = categoryClient;
         this.stringRedisTemplate = stringRedisTemplate;
+        this.pageClient = pageClient;
     }
 
     /**
      * 当canal检测到mysql-legou-category_表中发生UPDATE,INSERT,DELETE事件后，同步信息到redis数据库中
+     * (ListenPoint注解中,destination为canal实例名称(应该在项目配置文件中被定义))
      */
-    @ListenPoint(destination = "example", schema = "legou", table = {"category_"}, eventType = {CanalEntry.EventType.UPDATE, CanalEntry.EventType.INSERT, CanalEntry.EventType.DELETE})
+    @ListenPoint(destination = "example",
+            schema = "legou", table = {"category_"},
+            eventType = {CanalEntry.EventType.UPDATE,
+                    CanalEntry.EventType.INSERT,
+                    CanalEntry.EventType.DELETE})
     public void synCategoryInfo() throws JsonProcessingException {
         //使用Feign调用商品微服务,查询mysql数据库中最新的商品分类数据
         List<Category> list = categoryClient.list(new Category());
         //将数据存入(更新)到Redis中,来达成数据库的同步
         ObjectMapper objectMapper = new ObjectMapper();
         stringRedisTemplate.boundValueOps("cl").set(objectMapper.writeValueAsString(list));
+    }
+
+    /**
+     * 当canal检测到mysql-legou-spu_表中发生UPDATE,INSERT,DELETE事件后，
+     * 调用Page微服务,进行静态页面的生成、删除、更新操作(更新逻辑是直接重新渲染整个模板后覆写源文件)
+     * (ListenPoint注解中,destination为canal实例名称(应该在项目配置文件中被定义))
+     */
+    @ListenPoint(destination = "example",
+            schema = "legou", table = {"spu_"},
+            eventType = {CanalEntry.EventType.UPDATE,
+                    CanalEntry.EventType.INSERT,
+                    CanalEntry.EventType.DELETE})
+    public void onEventCustomSpu(CanalEntry.EventType eventType, CanalEntry.RowData rowData) {
+        //判断操作类型
+        if (eventType == CanalEntry.EventType.DELETE) {
+            //获取被删除数据的主键(spuId) -- 注意rowData使用getBefore方法获取(删除)操作执行之*前*的数据
+            String spuId = "";
+            List<CanalEntry.Column> beforeColumnsList = rowData.getBeforeColumnsList();
+            for (CanalEntry.Column column : beforeColumnsList) {
+                if (column.getName().equals("id_")) {
+                    spuId = column.getValue();
+                    break;
+                }
+            }
+            //调用page微服务,根据spuId删除静态页
+            pageClient.deleteHtml(Long.valueOf(spuId));
+        } else {
+            //数据发生了 新增 或者 更新  (两者的处理流程是一致的)
+            //获取新数据的主键(spuID)  -- 注意rowData使用getAfter方法获取(新增或更新)操作执行之*后*的数据
+            String spuId = "";
+            List<CanalEntry.Column> afterColumnsList = rowData.getAfterColumnsList();
+            for (CanalEntry.Column column : afterColumnsList) {
+                if (column.getName().equals("id")) {
+                    spuId = column.getValue();
+                    break;
+                }
+            }
+            //调用page微服务,根据spuId生成或更新静态页
+            pageClient.createHtml(Long.valueOf(spuId));
+        }
     }
 
     /* 教学示例
