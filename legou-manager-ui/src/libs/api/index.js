@@ -3,8 +3,8 @@ import { Message } from 'iview'
 
 const instance = axios.create({
   // baseURL: '/api',
-  // baseURL: 'http://localhost:8062/api',
-  baseURL: 'http://localhost:9005',
+  baseURL: 'http://localhost:8062/api',
+  // baseURL: 'http://localhost:9005',
   timeout: 1000000
 })
 
