@@ -1,4 +1,4 @@
-package com.lxs.legou;
+package com.lxs.legou.security;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
