@@ -7,40 +7,36 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 /**
- * @file MenuDao.java
- * @Copyright (C) http://www.lxs.com
- * @author lxs
- * @email lxosng77@163.com
- * @date 2018/8/16
+ * 前端没有用到Menu部分的业务逻辑,但后端给予了API的实现
  */
 public interface MenuDao extends ICrudDao<Menu> {
 
     /**
      * 根据角色查询菜单
-     * @param roleId
-     * @return
+     * @param roleId roleId
+     * @return 角色所属菜单列表
      */
     List<Menu> selectByRoleId(Long roleId);
 
     /**
      * 根据用户查询菜单
-     * @param userId
-     * @return
+     * @param userId userId
+     * @return 用户有权访问的菜单列表
      */
     List<Menu> selectByUserId(Long userId);
 
     /**
      * 删除角色的菜单
-     * @param id
-     * @return
+     * @param id RoleId
+     * @return affectedNumber
      */
     int deleteMenuByRole(Long id);
 
     /**
      * 关联菜单和角色
-     * @param menuId
-     * @param roleId
-     * @return
+     * @param menuId menuId
+     * @param roleId roleId
+     * @return affectedNumber
      */
     int insertMenuAndRole(@Param("menuId") Long menuId, @Param("roleId") Long roleId);
 

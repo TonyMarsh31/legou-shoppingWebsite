@@ -29,7 +29,7 @@
             <include refid="menuColumns"/>
         from
             menu_ a
-            <include refid="menuJoins"></include>
+            <include refid="menuJoins"/>
         where
             c.id_ = #{roleId}
     </select>
@@ -39,7 +39,7 @@
           <include refid="menuColumns"/>
         from
           menu_ a
-          <include refid="menuJoins"></include>
+          <include refid="menuJoins"/>
         <where>
             <if test="userId != null">
                 and e.id_ = #{userId}

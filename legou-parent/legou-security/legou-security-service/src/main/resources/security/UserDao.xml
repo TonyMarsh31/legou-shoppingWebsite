@@ -31,7 +31,7 @@
 			<include refid="userColumns"/>
 		from
 			user_ a
-			<include refid="userJoins"></include>
+			<include refid="userJoins"/>
 		<where>
 		<if test="userName != null and userName != ''">
 			a.user_name_ = #{userName}
@@ -63,7 +63,7 @@
 			<include refid="userColumns"/>
 		from
 			user_ a
-			<include refid="userJoins"></include>
+			<include refid="userJoins"/>
 		where
 			a.id_ = #{id}
 	</select>

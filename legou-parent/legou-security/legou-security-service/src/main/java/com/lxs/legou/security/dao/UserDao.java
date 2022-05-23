@@ -7,37 +7,31 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-/**
- * @Title:
- * @Description: 
- *
- * @Copyright 2019 lxs - Powered By 雪松
- * @Author: lxs
- * @Date:  2019/10/9
- * @Version V1.0
- */
 public interface UserDao extends ICrudDao<User> {
 
-	/**
-	 * 删除用户角色关联
-	 * @param id
-	 * @return
-	 */
-	int deleteRoleByUser(Long id);
+    /**
+     * 删除用户角色关联
+     *
+     * @param id userId
+     * @return affectedNumber
+     */
+    int deleteRoleByUser(Long id);
 
-	/**
-	 * 关联用户角色
-	 * @param roleId
-	 * @param userId
-	 * @return
-	 */
-	int insertRoleAndUser(@Param("roleId") Long roleId, @Param("userId") Long userId);
+    /**
+     * 关联用户角色
+     *
+     * @param roleId roleId
+     * @param userId userId
+     * @return affectedNumber
+     */
+    int insertRoleAndUser(@Param("roleId") Long roleId, @Param("userId") Long userId);
 
-	/**
-	 * 查询用户的角色
-	 * @param id
-	 * @return
-	 */
-	List<Role> selectRoleByUser(Long id);
+    /**
+     * 查询用户的角色
+     *
+     * @param id userId
+     * @return 该用户所属角色列表
+     */
+    List<Role> selectRoleByUser(Long id);
 
 }
