@@ -10,7 +10,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/item/sku")
+@RequestMapping("/sku")
 @CrossOrigin
 public class SkuController extends BaseController<ISkuService, Sku> {
 

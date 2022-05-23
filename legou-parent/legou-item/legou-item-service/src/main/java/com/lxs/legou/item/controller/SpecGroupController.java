@@ -11,7 +11,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping(value = "/item/group")
+@RequestMapping(value = "/group")
 @CrossOrigin
 public class SpecGroupController extends BaseController<ISpecGroupService, SpecGroup> {
 

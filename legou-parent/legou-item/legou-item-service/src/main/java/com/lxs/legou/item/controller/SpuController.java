@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/item/spu")
+@RequestMapping("/spu")
 @CrossOrigin
 public class SpuController extends BaseController<ISpuService, Spu> {
 

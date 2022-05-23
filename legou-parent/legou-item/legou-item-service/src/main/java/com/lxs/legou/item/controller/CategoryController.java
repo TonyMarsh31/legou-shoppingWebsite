@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/item/category")
+@RequestMapping("/category")
 @CrossOrigin
 public class CategoryController extends BaseController<ICategoryService, Category> {
     @ApiOperation(value="根据ids查询names", notes = "根据分类id查询名称列表")

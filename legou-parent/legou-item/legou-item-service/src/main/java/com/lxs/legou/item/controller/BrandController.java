@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/item/brand")
+@RequestMapping("/brand")
 @CrossOrigin
 public class BrandController extends BaseController<IBrandService, Brand> {
 

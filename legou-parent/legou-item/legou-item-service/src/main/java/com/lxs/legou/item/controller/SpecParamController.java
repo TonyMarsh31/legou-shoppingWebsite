@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/item/param")
+@RequestMapping(value = "/param")
 @CrossOrigin
 public class SpecParamController extends BaseController<ISpecParamService, SpecParam> {
 
