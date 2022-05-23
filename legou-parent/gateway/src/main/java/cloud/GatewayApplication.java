@@ -21,7 +21,7 @@ public class GatewayApplication {
     }
 
     /**
-     * IP限流
+     * 根据IP限流(以IP地址为标识)
      * @return 注册Bean到容器
      */
     @Bean(name = "ipKeyResolver")
