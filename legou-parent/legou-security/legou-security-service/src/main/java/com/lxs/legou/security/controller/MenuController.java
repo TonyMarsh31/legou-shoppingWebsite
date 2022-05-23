@@ -9,22 +9,14 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * @Title:
- * @Description: 
- *
- * @Copyright 2019 lxs - Powered By 雪松
- * @Author: lxs
- * @Date:  2019/10/9
- * @Version V1.0
- */
+
 @RestController
 @RequestMapping("/menu")
 public class MenuController extends BaseController<IMenuService, Menu> {
 
     /**
      * 查询菜单，选中角色已有的菜单
-     * @param roleId
+     * @param roleId roleID
      * @return
      */
     @ApiOperation(value = "查询菜单，选中角色已有的菜单", notes = "查询菜单，选中角色已有的菜单")
@@ -42,13 +34,13 @@ public class MenuController extends BaseController<IMenuService, Menu> {
     @GetMapping("/list-current-user")
     @ResponseBody
     public List<Menu> ListMenuByCurrentUser() {
-        //// TODO: 2019/10/9 暂时mock，userId=15admin用户，后期整合权限框架
-        return this.service.listByUser(15l);
+        // TODO: 2019/10/9 暂时mock，userId=15admin用户，后期整合权限框架
+        return this.service.listByUser(15L);
     }
 
     /**
      * 给角色分配菜单
-     * @param roleId
+     * @param roleId roleID
      * @param ids
      * @return
      */

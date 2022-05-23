@@ -13,15 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-/**
- * @Title:
- * @Description:
- *
- * @Copyright 2019 lxs - Powered By 雪松
- * @Author: lxs
- * @Date:  2019/10/9
- * @Version V1.0
- */
+
 @Service
 public class MenuServiceImpl extends CrudServiceImpl<Menu> implements IMenuService {
 
@@ -46,7 +38,7 @@ public class MenuServiceImpl extends CrudServiceImpl<Menu> implements IMenuServi
 		}
 	}
 
-	@Transactional(readOnly = false)
+	@Transactional()
 	public void doAssignMenu2Role(Long roleId, Long[] menuIds) {
 		MenuDao dao = ((MenuDao) getBaseMapper());
 		dao.deleteMenuByRole(roleId);
@@ -57,7 +49,7 @@ public class MenuServiceImpl extends CrudServiceImpl<Menu> implements IMenuServi
 
 	@Override
 	public List<Menu> list(Menu entity) {
-		QueryWrapper<Menu> queryWrapper = Wrappers.<Menu>query();
+		QueryWrapper<Menu> queryWrapper = Wrappers.query();
 		if (StringUtils.isNotEmpty(entity.getName())) {
 			queryWrapper.like("name", entity.getName());
 		}

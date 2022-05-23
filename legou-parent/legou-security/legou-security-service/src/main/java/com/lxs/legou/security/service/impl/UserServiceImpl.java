@@ -23,7 +23,7 @@ public class UserServiceImpl extends CrudServiceImpl<User> implements IUserServi
 	}
 
 	@Override
-	@Transactional(readOnly = false)
+	@Transactional()
 	public boolean saveOrUpdate(User entity) {
 		//添加时，设置lock=false
 		if (null == entity.getId()){

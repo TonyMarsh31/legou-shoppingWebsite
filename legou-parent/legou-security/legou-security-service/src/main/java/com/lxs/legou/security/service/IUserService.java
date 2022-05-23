@@ -22,20 +22,20 @@ public interface IUserService extends ICrudService<User> {
      * @param id
      * @return
      */
-    public List<Role> selectRoleByUser(Long id);
+    List<Role> selectRoleByUser(Long id);
 
     /**
      * 根据用户名，查询用户个数
      * @param userName
      * @return
      */
-    public Integer findCountByUserName(String userName);
+    Integer findCountByUserName(String userName);
 
     /**
      * 根据用户名查询用户
      * @param userName
      * @return
      */
-    public User getUserByUserName(String userName);
+    User getUserByUserName(String userName);
 
 }

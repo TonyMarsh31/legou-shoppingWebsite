@@ -23,20 +23,20 @@ public interface IMenuService extends ICrudService<Menu> {
      * @param userId
      * @return
      */
-    public List<Menu> listByUser(Long userId);
+    List<Menu> listByUser(Long userId);
 
     /**
      * 查询所有菜单，选中角色已有的菜单
      * @param roleId
      * @return
      */
-    public List<Menu> listChecked(Long roleId) ;
+    List<Menu> listChecked(Long roleId) ;
 
     /**
      * 关联角色和菜单
      * @param roleId
      * @param menuIds
      */
-    public void doAssignMenu2Role(Long roleId, Long[] menuIds);
+    void doAssignMenu2Role(Long roleId, Long[] menuIds);
 
 }

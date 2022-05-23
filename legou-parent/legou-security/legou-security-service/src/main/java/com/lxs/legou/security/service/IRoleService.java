@@ -22,6 +22,6 @@ public interface IRoleService extends ICrudService<Role> {
      * @param id
      * @return
      */
-    public List<User> selectUserByRole(Long id);
+    List<User> selectUserByRole(Long id);
 
 }

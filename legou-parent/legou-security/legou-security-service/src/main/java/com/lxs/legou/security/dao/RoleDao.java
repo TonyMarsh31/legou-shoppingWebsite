@@ -23,7 +23,7 @@ public interface RoleDao extends ICrudDao<Role> {
      * @param id
      * @return
      */
-    public int deleteUserByRole(Long id);
+    int deleteUserByRole(Long id);
 
     /**
      * 关联角色用户
@@ -32,7 +32,7 @@ public interface RoleDao extends ICrudDao<Role> {
      * @param roleId
      * @return
      */
-    public int insertUserAndRole(@Param("userId") Long userId, @Param("roleId") Long roleId);
+    int insertUserAndRole(@Param("userId") Long userId, @Param("roleId") Long roleId);
 
     /**
      * 删除权限菜单关联
@@ -40,7 +40,7 @@ public interface RoleDao extends ICrudDao<Role> {
      * @param id
      * @return
      */
-    public int deleteMenuByRole(Long id);
+    int deleteMenuByRole(Long id);
 
     /**
      * 关联角色和菜单
@@ -49,7 +49,7 @@ public interface RoleDao extends ICrudDao<Role> {
      * @param roleId
      * @return
      */
-    public int insertMenuAndRole(@Param("menuId") Long menuId, @Param("roleId") Long roleId);
+    int insertMenuAndRole(@Param("menuId") Long menuId, @Param("roleId") Long roleId);
 
     /**
      * 查询角色的用户
@@ -57,6 +57,6 @@ public interface RoleDao extends ICrudDao<Role> {
      * @param id
      * @return
      */
-    public List<User> selectUserByRole(Long id);
+    List<User> selectUserByRole(Long id);
 
 }

@@ -7,15 +7,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-/**
- * @Title:
- * @Description: 
- *
- * @Copyright 2019 lxs - Powered By 雪松
- * @Author: lxs
- * @Date:  2019/10/3
- * @Version V1.0
- */
+
 @Configuration
 @MapperScan("com.lxs.legou.security.dao")
 public class MybatisPlusConfig {

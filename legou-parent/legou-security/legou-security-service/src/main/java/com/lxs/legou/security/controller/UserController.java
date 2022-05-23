@@ -13,15 +13,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
-/**
- * @Title:
- * @Description: 
- *
- * @Copyright 2019 lxs - Powered By 雪松
- * @Author: lxs
- * @Date:  2019/10/9
- * @Version V1.0
- */
+
 @RestController
 @RequestMapping(value = "/user")
 public class UserController extends BaseController<IUserService, User> {
@@ -74,7 +66,7 @@ public class UserController extends BaseController<IUserService, User> {
 	 */
 	@GetMapping("/lock/{id}")
 	@ApiOperation("锁定账户")
-	public ResponseBean lock(@PathVariable Long id) throws Exception {
+	public ResponseBean lock(@PathVariable Long id) {
 		ResponseBean rm = new ResponseBean();
 		try {
 			User u = service.getById(id);

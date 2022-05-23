@@ -9,15 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-/**
- * @Title:
- * @Description: 
- *
- * @Copyright 2019 lxs - Powered By 雪松
- * @Author: lxs
- * @Date:  2019/10/9
- * @Version V1.0
- */
+
 @RestController
 @RequestMapping("/role")
 public class RoleController extends BaseController<IRoleService, Role> {

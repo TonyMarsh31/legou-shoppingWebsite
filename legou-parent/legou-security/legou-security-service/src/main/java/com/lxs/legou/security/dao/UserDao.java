@@ -23,7 +23,7 @@ public interface UserDao extends ICrudDao<User> {
 	 * @param id
 	 * @return
 	 */
-	public int deleteRoleByUser(Long id);
+	int deleteRoleByUser(Long id);
 
 	/**
 	 * 关联用户角色
@@ -31,13 +31,13 @@ public interface UserDao extends ICrudDao<User> {
 	 * @param userId
 	 * @return
 	 */
-	public int insertRoleAndUser(@Param("roleId") Long roleId, @Param("userId") Long userId);
+	int insertRoleAndUser(@Param("roleId") Long roleId, @Param("userId") Long userId);
 
 	/**
 	 * 查询用户的角色
 	 * @param id
 	 * @return
 	 */
-	public List<Role> selectRoleByUser(Long id);
+	List<Role> selectRoleByUser(Long id);
 
 }
