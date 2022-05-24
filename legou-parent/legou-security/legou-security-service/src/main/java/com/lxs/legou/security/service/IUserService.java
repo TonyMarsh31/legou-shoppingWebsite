@@ -6,15 +6,7 @@ import com.lxs.legou.security.po.User;
 
 import java.util.List;
 
-/**
- * @Title:
- * @Description: 
- *
- * @Copyright 2019 lxs - Powered By 雪松
- * @Author: lxs
- * @Date:  2019/10/9
- * @Version V1.0
- */
+
 public interface IUserService extends ICrudService<User> {
 
     /**

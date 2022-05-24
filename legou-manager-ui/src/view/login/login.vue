@@ -1,5 +1,5 @@
 <style lang="less">
-  @import './login.less';
+@import './login.less';
 </style>
 
 <template>
@@ -34,55 +34,53 @@
 </template>
 
 <script>
-  import instance from '@/libs/api/index'
-  import Qs from 'qs'
-  import store from '@/store'
+import instance from '@/libs/api/index'
+import Qs from 'qs'
+import store from '@/store'
 
-  export default {
-    name: 'login',
-    data () {
-      return {
-        formData: {
-          username: '',
-          password: ''
-        },
-        ruleValidate: {
-          username: [
-            {required: true, message: '用户名不能为空', trigger: 'blur'}
-          ],
-          password: [
-            {required: true, message: '密码不能为空', trigger: 'blur'}
-          ]
-        }
+export default {
+  name: 'login',
+  data () {
+    return {
+      formData: {
+        username: '',
+        password: ''
+      },
+      ruleValidate: {
+        username: [
+          { required: true, message: '用户名不能为空', trigger: 'blur' }
+        ],
+        password: [
+          { required: true, message: '密码不能为空', trigger: 'blur' }
+        ]
       }
-    },
-    methods: {
-      // 提交
-      handleSubmit (name) {
-        this.$refs[name].validate((valid) => {
-          if (valid) {
+    }
+  },
+  methods: {
+    // 提交
+    handleSubmit (name) {
+      this.$refs[name].validate((valid) => {
+        if (valid) {
+          instance.post(`/security/user/login`, Qs.stringify(this.formData, { arrayFormat: 'repeat' })).then(response => {
+            const data = response.data
+            store.commit('setToken', data.access_token)
 
-            instance.post(`/security/user/login`, Qs.stringify(this.formData, {arrayFormat: 'repeat'})).then(response => {
-              const data = response.data
-              store.commit('setToken', data.access_token)
+            // //设置请求头统一携带token
+            instance.defaults.headers.common['Authorization'] = 'Bearer ' + data.access_token
 
-              // //设置请求头统一携带token
-              instance.defaults.headers.common['Authorization'] = 'Bearer ' + data.access_token;
-
-              this.$router.push({
-                name: 'home'
-              })
+            this.$router.push({
+              name: 'home'
             })
-
-          } else {
-            this.$Message.error('Fail!')
-          }
-        })
-      }
-
+          })
+        } else {
+          this.$Message.error('Fail!')
+        }
+      })
     }
 
   }
+
+}
 </script>
 
 <style>

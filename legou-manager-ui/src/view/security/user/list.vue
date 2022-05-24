@@ -1,44 +1,44 @@
 <template>
+  <div>
     <div>
-        <div>
-            <Form ref="formData" :model="formData" :label-width="80">
-                <Row style="margin-top: 10px;">
-                    <Col span="8">
-                    <FormItem label="登录名称" prop="userName">
-                        <Input v-model="formData.userName" placeholder="登录名称"></Input>
-                    </FormItem>
-                    </Col>
-                    <Col span="8">
-                    <FormItem label="真实姓名" prop="realName">
-                        <Input v-model="formData.realName" placeholder="真实姓名"></Input>
-                    </FormItem>
-                    </Col>
-                    <Col span="8">
-                        <Divider type="vertical" />
-                        <Button type="primary" @click="add">添加</Button>
-                        <Button type="primary" @click="removeBatch">删除</Button>
-                        <Button type="primary" @click="query">查询</Button>
-                    </Col>
-                </Row>
-            </Form>
-        </div>
-
-        <Row>
-            <Table stripe ref="selection" :columns="columns" :data="rows"></Table>
-            <Page :total="total" :page-size="pageSize" show-sizer show-elevator show-total class="paging"
-                  @on-change="changePage" @on-page-size-change="changePageSize"></Page>
+      <Form ref="formData" :model="formData" :label-width="80">
+        <Row style="margin-top: 10px;">
+          <Col span="8">
+            <FormItem label="登录名称" prop="userName">
+              <Input v-model="formData.userName" placeholder="登录名称"></Input>
+            </FormItem>
+          </Col>
+          <Col span="8">
+            <FormItem label="真实姓名" prop="realName">
+              <Input v-model="formData.realName" placeholder="真实姓名"></Input>
+            </FormItem>
+          </Col>
+          <Col span="8">
+            <Divider type="vertical"/>
+            <Button type="primary" @click="add">添加</Button>
+            <Button type="primary" @click="removeBatch">删除</Button>
+            <Button type="primary" @click="query">查询</Button>
+          </Col>
         </Row>
-
+      </Form>
     </div>
+
+    <Row>
+      <Table stripe ref="selection" :columns="columns" :data="rows"></Table>
+      <Page :total="total" :page-size="pageSize" show-sizer show-elevator show-total class="paging"
+            @on-change="changePage" @on-page-size-change="changePageSize"></Page>
+    </Row>
+
+  </div>
 </template>
 <style scoped>
-    .paging {
-        float: right;
-        margin-top: 10px;
-    }
+.paging {
+  float: right;
+  margin-top: 10px;
+}
 </style>
 <script>
-import {baseList} from '@/libs/crud/base-list'
+import { baseList } from '@/libs/crud/base-list'
 import instance from '@/libs/api/index'
 
 export default {

@@ -6,15 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * @Title:
- * @Description:
- *
- * @Copyright 2019 lxs - Powered By 雪松
- * @Author: lxs
- * @Date:  2019/10/9
- * @Version V1.0
- */
+
 @Service
 public interface IMenuService extends ICrudService<Menu> {
 

@@ -1,44 +1,44 @@
 <template>
+  <div>
     <div>
-        <div>
-            <Form ref="formData" :model="formData" :label-width="80">
-                <Row style="margin-top: 10px;">
-                    <Col span="8">
-                    <FormItem label="名称" prop="name">
-                        <Input v-model="formData.name" placeholder="名称"></Input>
-                    </FormItem>
-                    </Col>
-                    <Col span="8">
-                    <FormItem label="描述" prop="title">
-                        <Input v-model="formData.title" placeholder="描述"></Input>
-                    </FormItem>
-                    </Col>
-                    <Col span="8">
-                        <Divider type="vertical" />
-                        <Button type="primary" @click="add">添加</Button>
-                        <Button type="primary" @click="removeBatch">删除</Button>
-                        <Button type="primary" @click="query">查询</Button>
-                    </Col>
-                </Row>
-            </Form>
-        </div>
-
-        <div>
-            <Table stripe ref="selection" :columns="columns" :data="rows"></Table>
-            <Page :total="total" :page-size="pageSize" show-sizer show-elevator show-total class="paging"
-                  @on-change="changePage" @on-page-size-change="changePageSize"></Page>
-        </div>
-
+      <Form ref="formData" :model="formData" :label-width="80">
+        <Row style="margin-top: 10px;">
+          <Col span="8">
+            <FormItem label="名称" prop="name">
+              <Input v-model="formData.name" placeholder="名称"></Input>
+            </FormItem>
+          </Col>
+          <Col span="8">
+            <FormItem label="描述" prop="title">
+              <Input v-model="formData.title" placeholder="描述"></Input>
+            </FormItem>
+          </Col>
+          <Col span="8">
+            <Divider type="vertical"/>
+            <Button type="primary" @click="add">添加</Button>
+            <Button type="primary" @click="removeBatch">删除</Button>
+            <Button type="primary" @click="query">查询</Button>
+          </Col>
+        </Row>
+      </Form>
     </div>
+
+    <div>
+      <Table stripe ref="selection" :columns="columns" :data="rows"></Table>
+      <Page :total="total" :page-size="pageSize" show-sizer show-elevator show-total class="paging"
+            @on-change="changePage" @on-page-size-change="changePageSize"></Page>
+    </div>
+
+  </div>
 </template>
 <style scoped>
-    .paging {
-        float: right;
-        margin-top: 10px;
-    }
+.paging {
+  float: right;
+  margin-top: 10px;
+}
 </style>
 <script>
-import {baseList} from '@/libs/crud/base-list'
+import { baseList } from '@/libs/crud/base-list'
 import selectMenu from '_c/select/selectMenu.vue'
 import instance from '@/libs/api/index'
 
@@ -49,7 +49,7 @@ export default {
       formData: {
         name: '',
         title: '',
-        checkedMenuList:[]
+        checkedMenuList: []
       },
       columns: [
         {
@@ -119,18 +119,18 @@ export default {
       ]
     }
   },
-  methods : {
+  methods: {
     openModal: function (roleId) {
       this.$Modal.confirm({
         scrollable: true,
         render: (h) => {
           return h(selectMenu, {
             props: {
-              roleId : roleId
+              roleId: roleId
             },
             on: {
               onCheckMenu: (list) => {
-                this.checkedMenuList = list;
+                this.checkedMenuList = list
               }
             }
           })
