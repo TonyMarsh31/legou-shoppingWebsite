@@ -10,8 +10,10 @@
         <module name="legou-core" />
         <module name="registry" />
         <module name="legou-common" />
+        <module name="legou-admin-instance" />
         <module name="legou-canal" />
         <module name="legou-security-service" />
+        <module name="legou-admin-service" />
         <module name="legou-search-instance" />
         <module name="legou-security-instance" />
         <module name="legou-item-service" />
@@ -28,6 +30,9 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="config" options="-parameters" />
       <module name="gateway" options="-parameters" />
+      <module name="legou-admin" options="-parameters" />
+      <module name="legou-admin-instance" options="-parameters" />
+      <module name="legou-admin-service" options="-parameters" />
       <module name="legou-canal" options="-parameters" />
       <module name="legou-common" options="-parameters" />
       <module name="legou-core" options="-parameters" />
