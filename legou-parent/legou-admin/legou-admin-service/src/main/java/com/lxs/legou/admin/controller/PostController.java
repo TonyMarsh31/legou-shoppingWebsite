@@ -16,10 +16,10 @@ public class PostController extends BaseController<IPostService, Post> {
 
     /**
      * 演示使用JSON注解过滤属性
-     * @return
      */
     @ApiOperation(value="查询", notes="查询所有")
     @RequestMapping(value = "/list", method = {RequestMethod.POST, RequestMethod.GET})
+    //该注释用于指明不对json数据中的desc字段反序列化
     @JSON(type = Post.class ,filter = "desc")
     public List<Post> list(Post post) {
         return service.list(post);
@@ -27,14 +27,10 @@ public class PostController extends BaseController<IPostService, Post> {
 
     /**
      * 分页查询
-     * @param entity
-     * @param page
-     * @param rows
-     * @return
      */
     @ApiOperation(value="分页查询", notes="分页查询")
     @PostMapping("/list-page")
-//    @PreAuthorize("hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('ADMIN')")
     public PageInfo<Post> listPage(Post entity,
                                    @RequestParam(name = "page", defaultValue = "1", required = false) int page,
                                    @RequestParam(name = "rows", defaultValue = "10", required = false) int rows) {
