@@ -22,6 +22,7 @@
         <module>gateway</module>
         <module>legou-security</module>
         <module>legou-admin</module>
+        <module>auth-center</module>
     </modules>
 
     <packaging>pom</packaging>

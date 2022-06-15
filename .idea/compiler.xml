@@ -21,6 +21,7 @@
         <module name="legou-search-service" />
         <module name="legou-item-instance" />
         <module name="legou-page" />
+        <module name="auth-center" />
         <module name="config" />
         <module name="gateway" />
       </profile>
@@ -28,6 +29,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="auth-center" options="-parameters" />
       <module name="config" options="-parameters" />
       <module name="gateway" options="-parameters" />
       <module name="legou-admin" options="-parameters" />
