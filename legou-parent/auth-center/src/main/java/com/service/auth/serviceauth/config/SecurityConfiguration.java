@@ -1,4 +1,4 @@
-package com.service.auth.serviceauth.service.impl;
+package com.service.auth.serviceauth.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
