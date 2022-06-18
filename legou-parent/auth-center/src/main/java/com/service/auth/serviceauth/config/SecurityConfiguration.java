@@ -13,12 +13,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
+//spring security配置类
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsService userDetailsService;
 
     public SecurityConfiguration(UserDetailsService userDetailsService) {
-        //注入自定义UserDailService(com.service.auth.serviceauth.service.impl.UserDetailServiceImpl)
+        //注入自定义UserDailService,用于访问项目中的RBAC数据
         this.userDetailsService = userDetailsService;
     }
 

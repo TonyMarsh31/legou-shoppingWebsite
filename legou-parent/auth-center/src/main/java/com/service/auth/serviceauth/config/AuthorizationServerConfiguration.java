@@ -25,6 +25,7 @@ import java.util.concurrent.TimeUnit;
 
 @Configuration
 @EnableAuthorizationServer
+//Oauth2的配置类
 public class AuthorizationServerConfiguration extends AuthorizationServerConfigurerAdapter {
 
     private static final Logger logger = LoggerFactory.getLogger(AuthorizationServerConfiguration.class);
@@ -41,14 +42,14 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 
     @Bean
     public TokenStore tokenStore() {
-        //使用JWT存储token
+        //使用JwtTokenStore实现无状态的令牌存储
         return new JwtTokenStore(jwtAccessTokenConverter());
     }
 
     @Bean
     public JwtAccessTokenConverter jwtAccessTokenConverter() {
         //使用非对称加密算法生成一个密钥，用于生成token
-        KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new ClassPathResource("kaikeba.jks"), "kaikeba".toCharArray());   //证书路径和 获取密钥库
+        KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new ClassPathResource("kaikeba.jks"), "kaikeba".toCharArray());   //证书路径和秘钥库密码
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
         converter.setKeyPair(keyStoreKeyFactory.getKeyPair("kaikeba"));  //获取密钥库中的密钥 密钥名称
         return converter;
@@ -61,6 +62,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     }
 
     @Override
+    //令牌端点相应的授权配置
     public void configure(AuthorizationServerSecurityConfigurer security) {
         //允许表单认证
         security.allowFormAuthenticationForClients()
@@ -71,7 +73,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     }
 
     @Override
-    //配置客户端详情服务(clientDetailsService)，主要配置客户端的详细信息
+    //配置客户端详情服务(clientDetailsService)，主要配置客户端的详细信息 - client_id - client_secret - scope - grant_type等等
     //你能够把客户端详情信息直接写死在这里，或者是通过数据库来存储调度详情信息
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         //直接读取数据库，需要保证数据库中有客户端信息 (oauth_client_details),否则资源服务器无法获取认证数据
