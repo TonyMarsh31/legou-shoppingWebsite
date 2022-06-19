@@ -1,4 +1,4 @@
-package cloud.client;
+package com.lxs.cloud.client;
 
 import com.lxs.legou.security.api.UserApi;
 import com.lxs.legou.security.po.Role;

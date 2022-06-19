@@ -1,4 +1,4 @@
-package cloud.controller;
+package com.lxs.cloud.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lxs.cloud.client.UserClient;

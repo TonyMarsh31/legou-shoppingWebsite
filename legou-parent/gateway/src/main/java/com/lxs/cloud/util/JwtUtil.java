@@ -1,4 +1,4 @@
-package cloud.util;
+package com.lxs.cloud.util;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;

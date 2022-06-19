@@ -1,4 +1,4 @@
-package cloud.filter;
+package com.lxs.cloud.filter;
 
 import com.lxs.cloud.util.JwtUtil;
 import io.jsonwebtoken.Claims;
