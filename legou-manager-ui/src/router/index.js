@@ -21,25 +21,28 @@ const turnTo = (to, access, next) => {
 
 router.beforeEach((to, from, next) => {
   iView.LoadingBar.start()
-  /*
+  // 从sessionStorage中取得token
   const token = getToken()
+  // token为空 路由的不是登录组件,则调到登录
   if (!token && to.name !== LOGIN_PAGE_NAME) {
     // 未登录且要跳转的页面不是登录页
     next({
       name: LOGIN_PAGE_NAME // 跳转到登录页
     })
+    // token为空，路由的是登录组件,则调到登录
   } else if (!token && to.name === LOGIN_PAGE_NAME) {
     // 未登陆且要跳转的页面是登录页
     next() // 跳转
+    // token不为空，路由的是登录组件,则调到首页
   } else if (token && to.name === LOGIN_PAGE_NAME) {
     // 已登录且要跳转的页面是登录页
     next({
       name: homeName // 跳转到homeName页
     })
+    // token不为空，访问其他组件，放行访问
   } else {
     next()
   }
-  */
   next()
 })
 
