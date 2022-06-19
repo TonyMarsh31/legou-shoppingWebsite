@@ -2,6 +2,7 @@ package com.lxs.legou.security.controller;
 
 import com.lxs.legou.core.controller.BaseController;
 import com.lxs.legou.core.po.ResponseBean;
+import com.lxs.legou.security.dto.UserLoginParamDto;
 import com.lxs.legou.security.po.Role;
 import com.lxs.legou.security.po.User;
 import com.lxs.legou.security.service.IUserService;
@@ -14,9 +15,11 @@ import org.springframework.security.oauth2.client.resource.OAuth2ProtectedResour
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import javax.validation.Valid;
 import java.util.Base64;
 import java.util.Collections;
 import java.util.List;
@@ -41,15 +44,18 @@ public class UserController extends BaseController<IUserService, User> {
     }
 
     @RequestMapping("/login")
-    public ResponseEntity<OAuth2AccessToken> login(String username, String password) {
-        //1:验证用户 无该用户或者密码错误则返回401
-        User user = service.getUserByUserName(username);
+    public ResponseEntity<OAuth2AccessToken> login(@Valid UserLoginParamDto loginDto, BindingResult bindingResult) throws Exception {
+        //1:验证用户
+        if (bindingResult.hasErrors()) {
+            throw new Exception("登陆信息错误，请确认后再试");
+        } ;
+        User user = service.getUserByUserName(loginDto.getUsername());
         if (null == user) {
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            throw new Exception("用户不存在");
         }
         //传输的是明文密码，需要加密后再比较
-        if (!BPwdEncoderUtil.matches(password, user.getPassword())) {
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        if (!BPwdEncoderUtil.matches(loginDto.getPassword(), user.getPassword())) {
+            throw new Exception("密码错误，请确认后再试");
         }
         //2:用户验证通过,使用restTemplate发送请求到授权服务器，申请令牌
         //请求头 "basic auth"
@@ -57,18 +63,21 @@ public class UserController extends BaseController<IUserService, User> {
         client_secret = "Basic " + Base64.getEncoder().encodeToString(client_secret.getBytes());
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", client_secret);
+        //上述过程构建发送http请求的授权信息,即使用Postman测试时位于请求头中的Authorization字段
 
         //请求参数
         MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
-        map.put("username", Collections.singletonList(username));
-        map.put("password", Collections.singletonList(password));
+        map.put("username", Collections.singletonList(loginDto.getUsername()));
+        map.put("password", Collections.singletonList(loginDto.getPassword()));
         map.put("grant_type", Collections.singletonList(oAuth2ProtectedResourceDetails.getGrantType()));
         map.put("scope", oAuth2ProtectedResourceDetails.getScope());
+        //上述过程构建发送http请求的参数信息,即请求体中的username,password,grant_type,scope字段
 
-        //HttpEntity(请求参数，头。。。)
+        //HttpEntity(请求参数 + 头 ...)
         HttpEntity<MultiValueMap<String, String>> httpEntity = new HttpEntity<>(map, headers);
-
+        //获取Token 注意先配置好oauth2.client.access-token-uri
         return restTemplate.exchange(oAuth2ProtectedResourceDetails.getAccessTokenUri(), HttpMethod.POST, httpEntity, OAuth2AccessToken.class);
+        //上述过程即使用密码模式登陆，获取access_token
 
     }
 
