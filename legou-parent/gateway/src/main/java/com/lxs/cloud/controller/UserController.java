@@ -15,8 +15,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-@RequestMapping("/user")
-@RestController
+//@RequestMapping("/user")
+//@RestController
 public class UserController {
 
     @Autowired
