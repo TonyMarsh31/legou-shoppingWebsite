@@ -6,6 +6,7 @@ import com.lxs.legou.security.dao.UserDao;
 import com.lxs.legou.security.po.Role;
 import com.lxs.legou.security.po.User;
 import com.lxs.legou.security.service.IUserService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,8 +15,11 @@ import java.util.List;
 @Service
 public class UserServiceImpl extends CrudServiceImpl<User> implements IUserService {
 
-//	@Autowired
-//	private PasswordEncoder passwordEncoder;
+	private final PasswordEncoder passwordEncoder;
+
+	public UserServiceImpl(PasswordEncoder passwordEncoder) {
+		this.passwordEncoder = passwordEncoder;
+	}
 
 	@Override
 	public List<Role> selectRoleByUser(Long id) {
@@ -30,8 +34,8 @@ public class UserServiceImpl extends CrudServiceImpl<User> implements IUserServi
 			entity.setLock(false);
 		}
 
-		//TODO 加入oath2后改回来了
-//		entity.setPassword(passwordEncoder.encode(entity.getPassword()));
+		//对明文密码进行加密处理
+		entity.setPassword(passwordEncoder.encode(entity.getPassword()));
 //		passwordHelper.encryptPassword(entity); //加密md5(md5(password,salt))
 
 		boolean result = super.saveOrUpdate(entity);
