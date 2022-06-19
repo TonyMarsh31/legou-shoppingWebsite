@@ -3,6 +3,7 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/legou-parent/auth-center/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/legou-parent/config/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/legou-parent/config/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/legou-parent/gateway/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/legou-parent/legou-admin/legou-admin-instance/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/legou-parent/legou-admin/legou-admin-service/src/main/java" charset="UTF-8" />
