@@ -14,6 +14,7 @@
         <module name="legou-canal" />
         <module name="legou-security-service" />
         <module name="legou-admin-service" />
+        <module name="legou-order-service" />
         <module name="legou-search-instance" />
         <module name="legou-security-instance" />
         <module name="legou-item-service" />
@@ -21,6 +22,7 @@
         <module name="legou-search-service" />
         <module name="legou-item-instance" />
         <module name="legou-page" />
+        <module name="legou-order-interface" />
         <module name="auth-center" />
         <module name="config" />
         <module name="gateway" />
@@ -40,6 +42,9 @@
       <module name="legou-core" options="-parameters" />
       <module name="legou-item-instance" options="-parameters" />
       <module name="legou-item-service" options="-parameters" />
+      <module name="legou-order" options="-parameters" />
+      <module name="legou-order-interface" options="-parameters" />
+      <module name="legou-order-service" options="-parameters" />
       <module name="legou-page" options="-parameters" />
       <module name="legou-search" options="-parameters" />
       <module name="legou-search-instance" options="-parameters" />

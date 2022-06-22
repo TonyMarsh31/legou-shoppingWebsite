@@ -23,6 +23,7 @@
         <module>legou-security</module>
         <module>legou-admin</module>
         <module>auth-center</module>
+        <module>legou-order</module>
     </modules>
 
     <packaging>pom</packaging>
