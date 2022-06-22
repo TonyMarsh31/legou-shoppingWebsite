@@ -15,4 +15,8 @@ public interface SkuApi {
     @GetMapping("/select-skus-by-spuid/{id}")
     List<Sku> selectSkusBySpuId(@PathVariable("id") Long spuId);
 
+    @ApiOperation(value="加载", notes="根据ID加载")
+    @GetMapping("/edit/{id}")
+    public Sku edit(@PathVariable Long id);
+
 }
