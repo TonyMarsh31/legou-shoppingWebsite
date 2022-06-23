@@ -25,6 +25,12 @@ public interface SkuClient extends SkuApi {
             LOGGER.error("异常发生，进入fallback方法");
             return null;
         }
+
+        @Override
+        public Sku edit(Long id) {
+            LOGGER.error("异常发生，进入fallback方法");
+            return null;
+        }
     }
 
 }
