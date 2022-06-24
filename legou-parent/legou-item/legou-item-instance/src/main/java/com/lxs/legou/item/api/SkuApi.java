@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
-@RequestMapping(value = "/item/sku")
+@RequestMapping(value = "/sku")
 public interface SkuApi {
 
     @ApiOperation(value="查询spu对应的sku", notes="根据spuId查询sku集合")
@@ -17,6 +17,6 @@ public interface SkuApi {
 
     @ApiOperation(value="加载", notes="根据ID加载")
     @GetMapping("/edit/{id}")
-    public Sku edit(@PathVariable Long id);
+    Sku edit(@PathVariable Long id);
 
 }

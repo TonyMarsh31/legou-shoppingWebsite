@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@RequestMapping("/item/brand")
+@RequestMapping("/brand")
 public interface BrandApi {
 
     @ApiOperation(value= "根据ids查询品牌", notes = "根据ids查询")

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@RequestMapping("/item/category")
+@RequestMapping("/category")
 public interface CategoryApi {
 
     @ApiOperation(value="根据ids查询names", notes = "根据分类id查询名称列表")

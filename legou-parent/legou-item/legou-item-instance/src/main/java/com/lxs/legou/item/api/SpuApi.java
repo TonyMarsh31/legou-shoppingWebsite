@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
-@RequestMapping(value = "/item/spu")
+@RequestMapping(value = "/spu")
 public interface SpuApi {
 
     @ApiOperation(value="查询所有", notes="查询所有spu")

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
-@RequestMapping(value = "/item/param")
+@RequestMapping(value = "/param")
 public interface SpecParamApi {
 
     @ApiOperation(value="查询", notes="根据实体条件查询参数")
