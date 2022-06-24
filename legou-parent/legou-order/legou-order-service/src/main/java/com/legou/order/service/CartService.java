@@ -16,8 +16,8 @@ public interface CartService {
 
     /**
      * 从redis中查询当前用户对应的购物车数据
-     * @param username
-     * @return
+     * @param username 用户名
+     * @return 购物车数据
      */
     List<OrderItem> list(String username);
 

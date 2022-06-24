@@ -6,7 +6,7 @@ import com.legou.order.service.CartService;
 import com.lxs.legou.item.po.Sku;
 import com.lxs.legou.item.po.Spu;
 import com.lxs.legou.order.po.OrderItem;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -14,20 +14,26 @@ import java.util.List;
 
 @Service
 public class CartServiceImpl implements CartService {
-
     private final SkuClient skuClient;
-
     private final SpuClient spuClient;
-
     private final RedisTemplate redisTemplate;
 
-    public CartServiceImpl(SkuClient skuClient, SpuClient spuClient, RedisTemplate redisTemplate) {
+    public CartServiceImpl(@Qualifier("com.legou.order.client.SkuClient") SkuClient skuClient,
+                           @Qualifier("com.legou.order.client.SpuClient") SpuClient spuClient,
+                           RedisTemplate redisTemplate) {
         this.skuClient = skuClient;
         this.spuClient = spuClient;
         this.redisTemplate = redisTemplate;
     }
 
 
+
+    /**
+     * 添加购物车
+     * @param id spuID
+     * @param num 购买数量
+     * @param username 用户名，从登录令牌中获得
+     */
     @Override
     public void add(Long id, Integer num, String username) {
 

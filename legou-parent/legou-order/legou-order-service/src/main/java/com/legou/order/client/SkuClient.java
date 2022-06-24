@@ -45,6 +45,7 @@ public interface SkuClient extends SkuApi {
             throwable.printStackTrace();
             logger.error(throwable.getMessage());
 
+            //异常直接返回null (有更好的处理方法,比如返回一个包含错误信息的对象)
             return new SkuClient() {
                 @Override
                 public List<Sku> selectSkusBySpuId(Long spuId) {
