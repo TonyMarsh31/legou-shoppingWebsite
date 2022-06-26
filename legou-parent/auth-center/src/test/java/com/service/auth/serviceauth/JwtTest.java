@@ -12,6 +12,7 @@ import org.springframework.security.rsa.crypto.KeyStoreKeyFactory;
 import java.security.KeyPair;
 import java.security.interfaces.RSAPrivateKey;
 import java.util.HashMap;
+import java.util.Map;
 
 
 public class JwtTest {
@@ -63,5 +64,37 @@ public class JwtTest {
         String encoded = jwt.getEncoded();
         System.out.println(encoded);
     }
+
+    //生成一个Admin的jwt令牌
+    @Test
+    public void testCreateAdminJwt() throws Exception {
+        //证书文件
+        String key_location = "kaikeba.jks";
+        //密钥库密码
+        String keystore_password = "kaikeba";
+        //访问证书路径
+        ClassPathResource resource = new ClassPathResource(key_location);
+        //密钥工厂
+        org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory keyStoreKeyFactory = new org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory(resource, keystore_password.toCharArray());
+        //密钥的密码，此密码和别名要匹配
+        String keypassword = "kaikeba";
+        //密钥别名
+        String alias = "kaikeba";
+        //密钥对（密钥和公钥）
+        KeyPair keyPair = keyStoreKeyFactory.getKeyPair(alias, keypassword.toCharArray());
+        //私钥
+        RSAPrivateKey aPrivate = (RSAPrivateKey) keyPair.getPrivate();
+        //定义payload信息
+        Map<String, Object> tokenMap = new HashMap<String, Object>();
+        tokenMap.put("user_name", "admin");
+        tokenMap.put("authorities", new String[] {"ROLE_ADMIN"});
+        tokenMap.put("client_id", "client");
+        //生成jwt令牌
+        Jwt jwt = JwtHelper.encode(new ObjectMapper().writeValueAsString(tokenMap), new RsaSigner(aPrivate));
+        //取出jwt令牌
+        String token = jwt.getEncoded();
+        System.out.println("token=" + token);
+    }
+
 
 }
