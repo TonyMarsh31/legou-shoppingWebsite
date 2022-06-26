@@ -70,6 +70,11 @@ public class CartServiceImpl implements CartService {
 
     }
 
+    /**
+     * 从redis中查询当前用户对应的购物车数据
+     * @param username 用户名
+     * @return 购物车数据
+     */
     @Override
     public List<OrderItem> list(String username) {
         return redisTemplate.boundHashOps("Cart_" + username).values();
