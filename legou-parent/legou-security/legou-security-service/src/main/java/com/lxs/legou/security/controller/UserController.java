@@ -48,7 +48,7 @@ public class UserController extends BaseController<IUserService, User> {
         //1:验证用户
         if (bindingResult.hasErrors()) {
             throw new Exception("登陆信息错误，请确认后再试");
-        } ;
+        }
         User user = service.getUserByUserName(loginDto.getUsername());
         if (null == user) {
             throw new Exception("用户不存在");
@@ -80,7 +80,6 @@ public class UserController extends BaseController<IUserService, User> {
         //上述过程即使用密码模式登陆，获取access_token
 
     }
-
 
     @ApiOperation("通过登录获得用户")
     @GetMapping("/get/{userName}")
@@ -156,5 +155,17 @@ public class UserController extends BaseController<IUserService, User> {
         }
         domain.setRoleIds(ids);
     }
+
+    /**
+     * 增加积分
+     *
+     * @param point    积分
+     * @param username 用户名
+     */
+    @GetMapping(value = "/add-point")
+    public void addPoint(@RequestParam("point") Long point, @RequestParam("username") String username) {
+        service.addPoint(point, username);
+    }
+
 
 }

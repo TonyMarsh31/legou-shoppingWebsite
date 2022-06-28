@@ -1,4 +1,4 @@
-package com.lxs.cloud.client;
+package com.legou.order.client;
 
 import com.lxs.legou.security.api.UserApi;
 import com.lxs.legou.security.po.Role;
@@ -15,7 +15,7 @@ import java.util.List;
 public interface UserClient extends UserApi {
 
     @Component
-    @RequestMapping("/fallback-user") //这个可以避免容器中requestMapping重复
+    @RequestMapping("/fallback") //这个可以避免容器中requestMapping重复
     class UserClientFallback implements UserClient {
 
         private static final Logger LOGGER = LoggerFactory.getLogger(UserClientFallback.class);
@@ -31,7 +31,6 @@ public interface UserClient extends UserApi {
             LOGGER.info("异常发生，进入fallback方法");
             return null;
         }
-
 
         @Override
         public void addPoint(Long point, String username) {

@@ -30,6 +30,12 @@ public interface SkuClient extends SkuApi {
             LOGGER.error("异常发生，进入fallback方法");
             return null;
         }
+
+        @Override
+        public void decrCount(Integer num, Long skuId) {
+            LOGGER.error("异常发生，进入fallback方法");
+        }
+
     }
 
 }

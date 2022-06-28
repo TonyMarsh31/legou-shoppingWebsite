@@ -89,6 +89,13 @@
             <version>${project.version}</version>
         </dependency>
 
+        <!--用户微服务-->
+        <dependency>
+            <groupId>com.lxs</groupId>
+            <artifactId>legou-security-instance</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
         <!--中间件，主要是工具类-->
         <dependency>
             <groupId>com.lxs</groupId>

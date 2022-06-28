@@ -20,19 +20,19 @@ public class Order extends BaseEntity {
     private Long id;
 
     @TableField("total_num_")
-    private Integer totalNum;//数量合计
+    private Long totalNum;//数量合计
 
     @TableField("total_money_")
-    private Integer totalMoney;//金额合计
+    private Long totalMoney;//金额合计
 
     @TableField("pre_money_")
-    private Integer preMoney;//优惠金额
+    private Long preMoney;//优惠金额
 
     @TableField("post_fee_")
-    private Integer postFee;//邮费
+    private Long postFee;//邮费
 
     @TableField("pay_money_")
-    private Integer payMoney;//实付金额
+    private Long payMoney;//实付金额
 
     @TableField("pay_type_")
     private String payType;//支付类型，1、在线支付、0 货到付款
@@ -96,5 +96,6 @@ public class Order extends BaseEntity {
 
     @TableField("is_delete_")
     private String isDelete;//是否删除
+
 
 }

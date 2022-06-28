@@ -17,7 +17,6 @@ public class OrderItem extends BaseEntity {
     @TableId(value = "id_", type = IdType.INPUT)
     private Long id;
 
-
     @TableField("category_id1_")
     private Long categoryId1;//1级分类
 
@@ -34,7 +33,7 @@ public class OrderItem extends BaseEntity {
     private Long skuId;//SKU_ID
 
     @TableField("order_id_")
-    private String orderId;//订单ID
+    private Long orderId;//订单ID
 
     @TableField("name_")
     private String name;//商品名称
@@ -55,10 +54,10 @@ public class OrderItem extends BaseEntity {
     private String image;//图片地址
 
     @TableField("weight_")
-    private Integer weight;//重量
+    private Long weight;//重量
 
     @TableField("post_fee_")
-    private Integer postFee;//运费
+    private Long postFee;//运费
 
     @TableField("is_return_")
     private String isReturn;//是否退货,0:未退货，1：已退货

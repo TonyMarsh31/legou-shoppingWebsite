@@ -4,6 +4,7 @@ import com.lxs.legou.core.dao.ICrudDao;
 import com.lxs.legou.security.po.Role;
 import com.lxs.legou.security.po.User;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -33,5 +34,15 @@ public interface UserDao extends ICrudDao<User> {
      * @return 该用户所属角色列表
      */
     List<Role> selectRoleByUser(Long id);
+
+    /**
+     * 为指定用户增加指定积分
+     * @param point 积分
+     * @param userName 用户名
+     * @return affectedNumber
+     */
+    @Update(value="update user_ set point_ = point_ + #{point} where user_name_ = #{userName}")
+    int addPoint(@Param(value="point") Long point , @Param(value="userName") String userName);
+
 
 }

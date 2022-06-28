@@ -22,4 +22,14 @@ public class SkuController extends BaseController<ISkuService, Sku> {
         return service.list(skuTemplate);
     }
 
+    /**
+     * 减库存
+     * @param num 数量
+     * @param skuId 商品id
+     */
+    @PostMapping("/decr-count")
+    public void decrCount(@RequestParam("num") Integer num, @RequestParam("skuId") Long skuId) {
+        service.decrCount(num, skuId);
+    }
+
 }
