@@ -89,6 +89,14 @@
             <version>${project.version}</version>
         </dependency>
 
+        <!--中间件，主要是工具类-->
+        <dependency>
+            <groupId>com.lxs</groupId>
+            <artifactId>legou-common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+
         <!-- swagger -->
         <dependency>
             <groupId>io.springfox</groupId>
