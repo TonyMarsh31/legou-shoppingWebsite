@@ -24,6 +24,7 @@
         <module>legou-admin</module>
         <module>auth-center</module>
         <module>legou-order</module>
+        <module>legou-pay</module>
     </modules>
 
     <packaging>pom</packaging>
