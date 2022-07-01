@@ -87,4 +87,23 @@ public class OrderServiceImpl extends CrudServiceImpl<Order> implements OrderSer
         //5 删除redis中的购物车数据
         redisTemplate.delete("Cart_" + order.getUsername());
     }
+
+
+    /**
+     * 修改订单完成支付状态
+     *
+     * @param outTradeNo 订单编号
+     * @param tradeNo    支付编号
+     */
+    @Override
+    public void updatePayStatus(String outTradeNo, String tradeNo) {
+        Order order = getBaseMapper().selectById(Long.parseLong(outTradeNo));
+
+        order.setUpdateTime(new Date());
+        order.setPayTime(new Date());
+        order.setOrderStatus("1");
+        order.setPayStatus("1");
+        order.setTransactionId(tradeNo);
+        getBaseMapper().updateById(order);
+    }
 }
