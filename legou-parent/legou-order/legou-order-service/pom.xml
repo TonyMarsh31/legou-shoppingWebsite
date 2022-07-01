@@ -17,6 +17,13 @@
     </properties>
 
     <dependencies>
+
+        <!-- amqp -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
+
         <!-- redis 使用-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
