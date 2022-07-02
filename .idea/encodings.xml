@@ -26,6 +26,10 @@
     <file url="file://$PROJECT_DIR$/legou-parent/legou-search/legou-search-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/legou-parent/legou-search/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/legou-parent/legou-search/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/legou-parent/legou-seckill/legou-seckill-interface/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/legou-parent/legou-seckill/legou-seckill-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/legou-parent/legou-seckill/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/legou-parent/legou-seckill/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/legou-parent/legou-security/legou-security-instance/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/legou-parent/legou-security/legou-security-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/legou-parent/legou-security/src/main/java" charset="UTF-8" />

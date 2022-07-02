@@ -25,6 +25,7 @@
         <module>auth-center</module>
         <module>legou-order</module>
         <module>legou-pay</module>
+        <module>legou-seckill</module>
     </modules>
 
     <packaging>pom</packaging>
