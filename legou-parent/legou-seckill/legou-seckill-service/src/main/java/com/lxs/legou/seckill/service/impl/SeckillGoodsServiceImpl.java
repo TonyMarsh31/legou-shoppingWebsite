@@ -19,12 +19,11 @@ public class SeckillGoodsServiceImpl extends CrudServiceImpl<SeckillGoods> imple
     }
 
     /**
-     *
-     * @param key 秒杀时区
+     * @param key 秒杀时区 (即数据库中的date_menu_字段)
      * @return 秒杀商品列表
      */
     @Override
-    public List<SeckillGoods> list(String key) {
+    public List list(String key) {
         return redisTemplate.boundHashOps(SystemConstants.SEC_KILL_GOODS_PREFIX + key).values();
     }
 
