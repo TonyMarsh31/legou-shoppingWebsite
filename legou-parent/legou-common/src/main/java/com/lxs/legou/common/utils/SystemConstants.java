@@ -1,11 +1,13 @@
 package com.lxs.legou.common.utils;
 
+/**
+ * 数据库表名常量类
+ */
 public class SystemConstants {
     /**
      * 秒杀商品存储到前缀的KEY
      */
     public static final String SEC_KILL_GOODS_PREFIX="SeckillGoods_";
-
 
     /**
      * 存储域订单的hash的大key
