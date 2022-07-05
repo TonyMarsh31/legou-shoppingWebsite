@@ -13,4 +13,11 @@ public interface ISeckillGoodsService extends ICrudService<SeckillGoods> {
      */
     List<SeckillGoods> list(String key);
 
+    /**
+     * 根据秒杀商品ID查询该商品详情
+     * @param time:时间区间
+     * @param id:商品ID
+     */
+    SeckillGoods one(String time,Long id);
+
 }

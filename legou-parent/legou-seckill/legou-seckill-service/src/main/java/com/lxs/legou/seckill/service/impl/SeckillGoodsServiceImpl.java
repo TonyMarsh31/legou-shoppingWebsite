@@ -27,4 +27,14 @@ public class SeckillGoodsServiceImpl extends CrudServiceImpl<SeckillGoods> imple
         return redisTemplate.boundHashOps(SystemConstants.SEC_KILL_GOODS_PREFIX + key).values();
     }
 
+    /**
+     * 根据秒杀商品ID查询该商品详情
+     *
+     * @param time :时间区间
+     * @param id   :商品ID
+     */
+    @Override
+    public SeckillGoods one(String time, Long id) {
+        return (SeckillGoods) redisTemplate.boundHashOps(SystemConstants.SEC_KILL_GOODS_PREFIX + time).get(id);
+    }
 }
