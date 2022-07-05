@@ -13,7 +13,7 @@ public class DateUtil {
     public static final String PATTERN_YYYYMMDDHH = "yyyyMMddHH";
     public static final String PATTERN_YYYY_MM_DDHHMM = "yyyy-MM-dd HH:mm";
 
-    /***
+    /**
      * 从yyyy-MM-dd HH:mm格式转成yyyyMMddHH格式
      * @param dateStr yyyy-MM-dd HH:mm
      * @return yyyyMMddHH
@@ -30,7 +30,7 @@ public class DateUtil {
         return null;
     }
 
-    /***
+    /**
      * 获取指定日期的凌晨
      * @return Date
      */
@@ -45,7 +45,7 @@ public class DateUtil {
     }
 
 
-    /***
+    /**
      * 时间增加N分钟
      * @param date Date
      * @param minutes int
@@ -59,7 +59,7 @@ public class DateUtil {
         return date;
     }
 
-    /***
+    /**
      * 时间递增N小时
      * @param hour int
      * @return Date
@@ -72,7 +72,7 @@ public class DateUtil {
         return date;
     }
 
-    /***
+    /**
      * 获取时间菜单
      * @return List<String>
      */
@@ -97,7 +97,7 @@ public class DateUtil {
         return dateMenus;
     }
 
-    /***
+    /**
      * 指定时间往后N个时间间隔
      * @param hours int
      * @return List<Date>
@@ -113,8 +113,8 @@ public class DateUtil {
         return dates;
     }
 
-    /***
-     * 时间转成yyyyMMddHH
+    /**
+     * Date类对象标准化为yyyyMMddHH的格式
      * @param date Date
      * @param pattern String
      * @return String
