@@ -44,4 +44,16 @@ public class SeckillGoodsController extends BaseController<ISeckillGoodsService,
     public List<SeckillGoods> list(@PathVariable("time") String time) {
         return goodsService.list(time);
     }
+
+    /**
+     * 根据时间段 和秒杀商品的ID 获取商的数据
+     * @param time 秒杀活动时间点，需要是符合yyyyMMddHH格式的整点时间,例如2022070518
+     * @param id 秒杀商品的ID
+     * @return SeckillGoods
+     */
+    @GetMapping("/one")
+    public SeckillGoods one(String time,Long id){
+        return goodsService.one(time, id);
+    }
+
 }
