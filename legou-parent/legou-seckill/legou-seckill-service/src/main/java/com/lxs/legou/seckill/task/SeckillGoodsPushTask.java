@@ -65,7 +65,7 @@ public class SeckillGoodsPushTask {
 
             //3 将查询到的秒杀商品数据推送到redis中
             // Redis存储结构: Hash结构,namespace为date_menu_字段的活动时间点
-            // key: "seckill_goods_"+商品id, value: 秒杀商品对象
+            // key: "seckill_goods_"+date_menu_字段的活动时间点, value: 秒杀商品对象
             List<SeckillGoods> seckillGoods = seckillGoodsDao.selectList(query);
             for (SeckillGoods seckillGood : seckillGoods) {
                 redisTemplate.boundHashOps(SystemConstants.SEC_KILL_GOODS_PREFIX + extName).put(seckillGood.getId(), seckillGood);
