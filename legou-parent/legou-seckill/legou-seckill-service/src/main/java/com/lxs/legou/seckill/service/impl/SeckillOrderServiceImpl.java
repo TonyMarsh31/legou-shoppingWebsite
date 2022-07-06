@@ -43,6 +43,7 @@ public class SeckillOrderServiceImpl extends CrudServiceImpl<SeckillOrder> imple
     @Override
     public Boolean add(Long id, String time, String username) {
 
+        // 多线程任务测试，下述方法中对休眠20s，如果多线程配置生效则不会卡20s，而是直接返回结果
         multiThreadingCreateOrder.createOrder();
 
 //        //获取商品数据
