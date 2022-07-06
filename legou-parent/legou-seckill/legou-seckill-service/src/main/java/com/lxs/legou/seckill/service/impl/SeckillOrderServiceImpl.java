@@ -44,6 +44,7 @@ public class SeckillOrderServiceImpl extends CrudServiceImpl<SeckillOrder> imple
     public Boolean add(Long id, String time, String username) {
 
         // 多线程任务测试，下述方法中对休眠20s，如果多线程配置生效则不会卡20s，而是直接返回结果
+        // 补充: 是Controller返回给前端的结果不需要等待20s ，但还是需要等待20s后sout结果后下单进程的操作才结束
         multiThreadingCreateOrder.createOrder();
 
 //        //获取商品数据
