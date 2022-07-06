@@ -15,7 +15,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableFeignClients
 @EnableCircuitBreaker
 @EnableScheduling
-@EnableAsync //开启异步方法
+@EnableAsync //开启异步方法的支持
 public class SeckillApplication {
 
     public static void main(String[] args) {
