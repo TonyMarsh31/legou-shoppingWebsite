@@ -26,6 +26,14 @@ public class SeckillOrderServiceImpl extends CrudServiceImpl<SeckillOrder> imple
     @Override
     public Boolean add(Long id, String time, String username) {
 
+        /*
+        Redis中的用户秒杀排队次数数据结构：Hash  -> namespace = UserQueueCount -> key:username  -> value:次数
+        */
+        Long userQueueCount = redisTemplate.boundHashOps(SystemConstants.SEC_KILL_QUEUE_REPEAT_KEY).increment(username, 1);
+        if (userQueueCount > 1) {
+            throw new RuntimeException("秒杀重复排队"); //重复参与秒杀活动
+        }
+
         //新建一个秒杀订单队列信息用于测试
         SeckillStatus seckillStatus = new SeckillStatus(username, new Date(), 1, id, time);
 
