@@ -5,6 +5,7 @@ import com.lxs.legou.common.utils.SystemConstants;
 import com.lxs.legou.seckill.dao.SeckillGoodsDao;
 import com.lxs.legou.seckill.po.SeckillGoods;
 import com.lxs.legou.seckill.po.SeckillOrder;
+import com.lxs.legou.seckill.pojo.SeckillStatus;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
@@ -27,15 +28,22 @@ public class MultiThreadingCreateOrder {
 
     /**
      * 多线程抢单:添加秒杀订单
-     *
-     * @param id       :商品ID
-     * @param time     :商品秒杀开始时间
-     * @param username :⽤户登录名
      */
     @Async
-    public void createOrder(Long id, String time, String username) {
-        //获取商品数据
-        SeckillGoods goods = (SeckillGoods) redisTemplate.boundHashOps(SystemConstants.SEC_KILL_GOODS_PREFIX + time).get(id);
+    public void createOrder() {
+
+        //加载Redis秒杀订单队列中的订单数据
+        SeckillStatus seckillStatus = (SeckillStatus) redisTemplate.boundListOps(SystemConstants.SEC_KILL_USER_QUEUE_KEY).rightPop();
+        if (seckillStatus == null) {
+            throw new RuntimeException("获取订单数据失败!");
+        }
+        String username = seckillStatus.getUsername(); //用户名
+        Long id = seckillStatus.getGoodsId(); //商品id
+        String time = seckillStatus.getTime(); //秒杀区间
+
+        //根据id获取秒杀商品的详细信息
+        SeckillGoods goods = (SeckillGoods) redisTemplate.boundHashOps(SystemConstants.SEC_KILL_GOODS_PREFIX).get(id);
+
         //如果没有库存，则直接抛出异常
         if (goods == null || goods.getStockCount() <= 0) {
             throw new RuntimeException("已售罄!");
