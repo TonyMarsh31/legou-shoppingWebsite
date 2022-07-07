@@ -70,6 +70,16 @@ public class MultiThreadingCreateOrder {
             //如果有库存，则将新的商品数据存入Redis中，重置旧数据
             redisTemplate.boundHashOps(SystemConstants.SEC_KILL_GOODS_PREFIX + time).put(id, goods);
         }
+
+        //为方便进行多线程测试，下面模拟耗时操作
+        try {
+            System.out.println("*******开始模拟耗时操作********");
+            Thread.sleep(10000);
+            System.out.println("*******结束模拟耗时操作********");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
     }
 }
 
