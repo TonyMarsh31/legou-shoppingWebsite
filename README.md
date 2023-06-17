@@ -6,18 +6,4 @@
 #### 软件架构
 vue + SSM + SpringCloud等组件
 
-#### 安装教程
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 使用说明
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 特技
-
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
+目前我还没完善README，但已经制定了计划来安排。同时，我也计划在我的博客中记录一些本项目所使用的技术细节。(2023-6-17) 
